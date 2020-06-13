@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
+
 class TrayIcon(QSystemTrayIcon):
     def __init__(self, parent_addr=None, parent=None):
         super(TrayIcon, self).__init__(parent)
@@ -14,7 +15,9 @@ class TrayIcon(QSystemTrayIcon):
 
     def showMenu(self):
         self.menu = QMenu()
-        self.showAction = QAction("显示/隐藏窗口", self, triggered=self.change_windows)
+        self.showAction = QAction("显示/隐藏窗口",
+                                  self,
+                                  triggered=self.change_windows)
         self.quitAction = QAction("退出", self, triggered=self.quitProgram)
         self.menu.addAction(self.showAction)
         self.menu.addAction(self.quitAction)
@@ -30,7 +33,7 @@ class TrayIcon(QSystemTrayIcon):
                 self.parent().show()
                 self.parent().raise_()
 
-    def show_toast(self, title = "迷你课程表", desc = "这是程序的上课提醒功能"):
+    def show_toast(self, title="迷你课程表", desc="这是程序的上课提醒功能"):
         self.showMessage(title, desc, self.icon)
 
     def change_windows(self):
